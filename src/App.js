@@ -3,15 +3,27 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-    const employees = ['Samiul', 'Chaity', 'Titul']
+    // const employees = ['Samiul', 'Chaity', 'Titul', 'Pollob']
+    const employees = [{ name: 'Samiul', role: 'admin' }, { name: 'Chaity', role: 'general member' }, { name: 'Rakhee', role: 'reporter' }, { name: 'Forhad', role: '' }]
     return (
         <div className="App">
             <UserCounter></UserCounter>
+            {/* access first component dynamically */}
+            {
+                // employees.map(emp => <li>{emp}</li>)
+                // access static
+                // employees.map(emp => <Employee name="Sami"></Employee>)
+                // access dynamic array
+                // employees.map(emp => <Employee name={emp}></Employee>)
+                // access dynamic object
+                employees.map(emp => <Employee name={emp.name} role={emp.role}></Employee>)
+            }
+
             {/* using first component */}
-            <Employee name={employees[0]} role="admin"></Employee>
+            {/* <Employee name={employees[0]} role="admin"></Employee>
             <Employee name={employees[1]} role="general member"></Employee>
             <Employee name="Forhad"></Employee>
-            <Employee name="Rakhee"></Employee>
+            <Employee name="Rakhee"></Employee> */}
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
             </header>
@@ -53,8 +65,8 @@ function Employee(props) {
     }
     return (
         <div style={employeeStyle}>
-            <h1>User-{props.name}</h1>
-            <h3>user position {props.role || "website viewer"}</h3>
+            <h1>User - {props.name}</h1>
+            <h3>user position - {props.role || "Viewer"}</h3>
         </div>
     )
 }
