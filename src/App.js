@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
     const employees = ['Samiul', 'Chaity', 'Titul']
     return (
         <div className="App">
+            <UserCounter></UserCounter>
             {/* using first component */}
             <Employee name={employees[0]} role="admin"></Employee>
             <Employee name={employees[1]} role="general member"></Employee>
@@ -15,6 +17,25 @@ function App() {
             </header>
         </div>
     );
+}
+
+// state function
+function UserCounter() {
+    // de-structure useState
+    const result = ['abc', 'def']
+    console.log(result[0], result[1])
+
+    const [first, second] = ['abc', 'def']
+    console.log(first, second)
+
+    const [count, setCount] = useState(0);
+    console.log(count, setCount);
+    return (
+        <div>
+            <button>Add User</button>
+            <h3>Number of User: </h3>
+        </div>
+    )
 }
 
 // create first component
