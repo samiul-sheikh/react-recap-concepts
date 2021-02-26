@@ -1,10 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
+    // Load data from API using useEffect recap
+    const [employees, SetEmployees] = useState([])
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => SetEmployees(data))
+    }, [])
+
     // const employees = ['Samiul', 'Chaity', 'Titul', 'Pollob']
-    const employees = [{ name: 'Samiul', role: 'admin' }, { name: 'Chaity', role: 'general member' }, { name: 'Rakhee', role: 'reporter' }, { name: 'Forhad', role: '' }]
+    // const employees = [{ name: 'Samiul', role: 'admin' }, { name: 'Chaity', role: 'general member' }, { name: 'Rakhee', role: 'reporter' }, { name: 'Forhad', role: '' }]
     return (
         <div className="App">
             <UserCounter></UserCounter>
@@ -16,7 +24,7 @@ function App() {
                 // access dynamic array
                 // employees.map(emp => <Employee name={emp}></Employee>)
                 // access dynamic object
-                employees.map(emp => <Employee name={emp.name} role={emp.role}></Employee>)
+                employees.map(emp => <Employee name={emp.name} key={emp.id} role={emp.role}></Employee>)
             }
 
             {/* using first component */}
@@ -33,7 +41,7 @@ function App() {
 
 // Event handler state update and pass state Recap
 function UserCounter() {
-    const [count, setCount] = useState(5);
+    const [count, setCount] = useState(0);
     // console.log(count, setCount);
     // const handleClick = () => console.log('clicked');
     const handleClick = () => setCount(count + 1);
