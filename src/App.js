@@ -19,23 +19,26 @@ function App() {
     );
 }
 
-// state function
+// Event handler state update and pass state Recap
 function UserCounter() {
-    // de-structure useState
-    const result = ['abc', 'def']
-    console.log(result[0], result[1])
+    const [count, setCount] = useState(5);
+    // console.log(count, setCount);
+    // const handleClick = () => console.log('clicked');
+    const handleClick = () => setCount(count + 1);
 
-    const [first, second] = ['abc', 'def']
-    console.log(first, second)
-
-    const [count, setCount] = useState(0);
-    console.log(count, setCount);
     return (
         <div>
-            <button>Add User</button>
-            <h3>Number of User: </h3>
+            <button onClick={handleClick}>Add User</button>
+            <h3>Number of Users: {count}</h3>
+            {/* using in another component dynamically */}
+            <UserDisplay viewers={count}></UserDisplay>
+            <UserDisplay viewers={count + 10}></UserDisplay>
         </div>
     )
+}
+// access from UserCounter components
+function UserDisplay(props) {
+    return <h4>Our website viewer: {props.viewers}</h4>
 }
 
 // create first component
